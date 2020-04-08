@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.User" >
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <select id="getAll" resultMap="BaseResultMap"  >
+       select name "name",password "password" from test_xsp_001
+    </select>
+ 
+    <select id="getOne" parameterType="java.lang.String" resultType="com.example.demo.bean.User" >
+	   select name "name",password "password" from test_xsp_001 where name=#{name}
+    </select>
+    
+    <select id="exists" parameterType="com.example.demo.bean.User" resultType="int" >
+	   select count(1) from test_xsp_001 where name=#{name}
+    </select>
+ 
+    <insert id="insert" parameterType="com.example.demo.bean.User" >
+       INSERT INTO 
+       		test_xsp_001
+       		(name,password) 
+       	VALUES
+       		(#{name}, #{password})
+    </insert>
+    
+    <update id="update" parameterType="com.example.demo.bean.User" >
+       UPDATE 
+       		test_xsp_001
+       SET 
+       	<if test="password != null">password = #{password}</if>
+       WHERE 
+       		name = #{name}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.String" >
+       DELETE FROM
+       		 test_xsp_001 
+       WHERE 
+       		 name =#{name}
+    </delete>
+ 
+</mapper>

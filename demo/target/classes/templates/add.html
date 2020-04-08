@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style type="text/css">
+        table {border-collapse: collapse; font-size: 14px;
+            width: 80%; margin: auto}
+        table, th, td {border: 0px solid darkslategray;padding: 10px}
+        .btgn{
+            font-family: "Microsoft YaHei UI";
+            font-size: 16px;
+            color: #255e95;
+            background-color: #99CCFF;
+            text-align: center;
+        }
+        .ccc{
+            font-family: "Microsoft YaHei UI";
+            font-size: 16px;
+            color: #255e95;
+            background-color: #ff7c76;
+            text-align: center;
+        }
+
+        tr:nth-child(2n){
+            background-color:#FFCC99;
+        }
+        tr:nth-child(2n+1) {
+            background-color: #99CC99;
+        }
+
+        .c{
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+<body>
+<div style="margin:122px auto; width:392px">
+    <span class="span" style="color: darkslategray; font-size: 30px" >欢迎欢迎，热烈欢迎</span><br/>
+    <div th:switch="${type}">
+	<span class="span" style="color: darkslategray; font-size: 30px" th:case="add" >添加页面</span><!-- 若${type}中的值为add则显示，否则不显示 -->
+	<span class="span" style="color: darkslategray; font-size: 30px" th:case="update" >修改页面</span><!-- 若${type}中的值为update则显示，否则不显示 -->
+	</div>
+    
+    <form th:action="@{${type}+'User'}"  method="post" class="c" th:object="${user}" >
+    <div th:switch="${type}">
+    <div th:case="add" >
+    <tr><th class="btgn">用户名:</th> <input name="name" class="btgn"   /><tr/><br/>
+    <tr><th class="ccc">密码:</th> <input name="password" class="ccc" /><tr/> <br/>
+    </div>
+    <div th:case="update" >
+    <tr><th class="btgn">用户名:</th> <input name="name" class="btgn" th:value="*{name}" readonly/><tr/><br/>
+    <tr><th class="ccc">密码:</th> <input name="password" class="ccc" th:value="*{password}"/><tr/> <br/>
+    </div>
+    </div>
+        
+        <button type="submit">提交</button>
+
+    </form>
+</div>
+</body>
+
+</html>
