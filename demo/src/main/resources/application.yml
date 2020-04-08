@@ -24,7 +24,17 @@ spring:
 #    #配置模板路径，默认是templates，可以不用配置
 #    prefix: classpath:/templates
 #    suffix: .html
-    
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+      shutdown-timeout: 30000
 mybatis:
   #config-locations: classpath:conf/mybatis-config.xml
   mapper-locations: classpath:conf/mapper/*.xml

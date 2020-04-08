@@ -34,8 +34,8 @@
         <tr>
             <th class="btgn">姓名</th>
             <th class="btgn">密码</th>
-            <th class="btgn">操作</th>
-            <th class="btgn">操作</th>
+            <th class="btgn">操作1</th>
+            <th class="btgn">操作2</th>
 
 
         </tr>
@@ -44,8 +44,6 @@
             <td th:text="${user.name}">xxx</td>
             <td th:text="${user.password}">xxx</td>
 
-            <!--<td th:text="${#dates.format(user.birthday, 'yyyy-MM-dd')}">1980-02-30</td>-->
-            <!--<td th:text="${user.phone}">1</td>-->
             <td><a th:href="@{/delete?(name=${user.name})}"><input type="submit" value="删除用户"></a></td>
             <td><a th:href="@{/update?(name=${user.name},password=${user.password})}"><input type="submit" value="修改用户"></a></td>
 
